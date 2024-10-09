@@ -56,6 +56,7 @@ contract Lottery {
     // ================================================================
     constructor(uint256 _i_entranceFee) {
         i_entranceFee = _i_entranceFee;
+        s_lotteryState = LotteryState.OPEN; //open the lottery when contract was deployed
     }
     // ================================================================
     // │                      PUBLIC FUNCTION                        │
@@ -73,4 +74,19 @@ contract Lottery {
         emit LotteryEntered((msg.sender));
     
   }
+    // ================================================================
+    // │                      GETTER FUNCTIONS                       │
+    // ================================================================  
+    function getEntranceFee() public view returns (uint256) {
+        return i_entranceFee;
+    }
+    function getRewardBalance() public view returns(uint256) {
+        return s_rewardBalance;
+    }
+    function getPlayerByIndex(uint256 _index) public view returns(address){
+        return s_players[_index];
+    }
+    function getPlayersLength() public view returns(uint256){
+        return s_players.length;
+    }
 }
